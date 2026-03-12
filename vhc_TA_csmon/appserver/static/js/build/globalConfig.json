@@ -1,0 +1,149 @@
+{
+    "meta": {
+        "displayName": "CSmon®",
+        "name": "vhc_TA_csmon",
+        "restRoot": "vhc_TA_csmon",
+        "version": "1.0.1",
+        "schemaVersion": "0.0.10",
+        "checkForUpdates": true,
+        "isVisible": true,
+        "supportedThemes": [
+            "light",
+            "dark"
+        ],
+        "hideUCCVersion": true,
+        "_uccVersion": "6.1.0"
+    },
+    "pages": {
+        "configuration": {
+            "tabs": [
+                {
+                    "name": "settings",
+                    "title": "Global Settings",
+                    "entity": [
+                        {
+                            "type": "text",
+                            "label": "CSmon Index",
+                            "field": "index",
+                            "defaultValue": "csmon",
+                            "help": "Specify the index where CSmon data is stored.",
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "regex",
+                                    "errorMsg": "Index name must be alphanumeric and start with a letter.",
+                                    "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "system_settings",
+                    "title": "System Scope",
+                    "entity": [
+                        {
+                            "type": "text",
+                            "label": "SAP Systems",
+                            "field": "sap_systems",
+                            "defaultValue": "SERVICEDESC=\"Logon Check\"",
+                            "help": "SAP System Identifier.",
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 3,
+                                    "maxLength": 200
+                                },
+                                {
+                                    "type": "regex",
+                                    "errorMsg": "Invalid characters in filter. Use alphanumeric and simple operators.",
+                                    "pattern": "^[a-zA-Z0-9_!=\"'\\s\\*\\.\\-\\(\\)]+$"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "label": "HANA Systems",
+                            "field": "hana_systems",
+                            "defaultValue": "SERVICEDESC=\"All Services Started\"",
+                            "help": "HANA System Identifier.",
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 3,
+                                    "maxLength": 200
+                                },
+                                {
+                                    "type": "regex",
+                                    "errorMsg": "Invalid characters in filter. Use alphanumeric and simple operators.",
+                                    "pattern": "^[a-zA-Z0-9_!=\"'\\s\\*\\.\\-\\(\\)]+$"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "modus_settings",
+                    "title": "Mode",
+                    "entity": [
+                        {
+                            "type": "checkbox",
+                            "label": "Demo-Mode (Mock Data)",
+                            "field": "test_mode",
+                            "defaultValue": 1
+                        }
+                    ]
+                },
+                {
+                    "name": "logging",
+                    "title": "Logging",
+                    "entity": [
+                        {
+                            "type": "singleSelect",
+                            "label": "Log level",
+                            "options": {
+                                "disableSearch": true,
+                                "autoCompleteFields": [
+                                    {
+                                        "value": "DEBUG",
+                                        "label": "DEBUG"
+                                    },
+                                    {
+                                        "value": "INFO",
+                                        "label": "INFO"
+                                    },
+                                    {
+                                        "value": "WARNING",
+                                        "label": "WARNING"
+                                    },
+                                    {
+                                        "value": "ERROR",
+                                        "label": "ERROR"
+                                    },
+                                    {
+                                        "value": "CRITICAL",
+                                        "label": "CRITICAL"
+                                    }
+                                ]
+                            },
+                            "defaultValue": "INFO",
+                            "field": "loglevel",
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "regex",
+                                    "errorMsg": "Log level must be one of: DEBUG, INFO, WARNING, ERROR, CRITICAL",
+                                    "pattern": "^DEBUG|INFO|WARNING|ERROR|CRITICAL$"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "title": "CSmon® Global Configuration",
+            "description": "Adjust settings to suit your needs."
+        }
+    }
+}
